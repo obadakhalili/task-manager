@@ -1,0 +1,30 @@
+<%- include('../partials/header') %>
+    <div class="container">
+        <form id="signupForm">
+            <h4>Sign up A New Account</h4>
+            <div id="alertsArea"></div>
+            <div class="alert alert-dismissible alert-danger d-none" id="alertBox"></div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" class="form-control" placeholder="Enter Your Email">
+            </div>
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" name="name" class="form-control" placeholder="Enter Your Name">
+            </div>
+            <div class="form-group">
+                <label>Age</label>
+                <input type="number" name="age" class="form-control" placeholder="Enter Your Age">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" class="form-control" placeholder="Enter Your Password">
+            </div>
+            <button type="sumbit" class="btn btn-primary btn-block mb-2">Sign up</button>
+            <a href="/login" class="text-decoration-none">
+                <button type="button" class="btn btn-secondary btn-block">Sign in</button>
+            </a>
+        </form>
+    </div>
+    <script src="scripts/signup.js"></script>
+<%- include('../partials/footer') %>

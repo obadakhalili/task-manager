@@ -1,0 +1,37 @@
+<div class="modal fade" id="accountModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Account Info</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+        <form id="editAccountForm">
+                <div id="alertsArea"></div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" value="<%= email %>" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" name="name" value="<%= name %>" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Age</label>
+                    <input type="number" name="age" value="<%= age %>" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="password" value="" class="form-control">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-danger" id="deleteAccountBtn">Delete Account</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+        </form>
+            </div>
+        </div>
+    </div>
+</div>

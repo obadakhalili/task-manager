@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" id="navarBrand"><%= name %></a>
+    <ul class="navbar-nav mr-auto">
+        <small>
+            <li class="nav-item active" data-toggle="modal" data-target="#accountModal">
+                <a class="nav-link" href="#">Account</a>
+            </li>
+        </small>
+    </ul>
+    <form id="logoutForm" class="ml-2">
+        <button type="submit" class="btn btn-secondary btn-sm">Logout</button>
+        <div class="custom-control custom-checkbox float-right ml-2 mt-1">
+            <input type="checkbox" class="custom-control-input" id="logoutAllCb">
+            <label class="custom-control-label" for="logoutAllCb">From All Devices</label>
+        </div>
+    </form>
+</nav>
