@@ -47,13 +47,13 @@ deleteAllForm.addEventListener('submit', async e => {
 
 addTaskForm.addEventListener('submit', async e => {
     e.preventDefault();
-    const descreption = addTaskForm.descreption.value;
-    const completed = taskCompletedCbForAdd.checked;
-    const response = await sendRequest('/tasks', 'POST', { descreption, completed });
+    const response = await sendRequest('/tasks', 'POST', { descreption: addTaskForm.descreption.value, completed: addTaskForm.taskCompletedCbForAdd.checked });
     if (!response.success) {
         document.getElementById('alertsAreaForAdd').innerHTML = `<div class="alert alert-warning">${response.error}</div>`;
     } else {
         document.getElementById('alertsAreaForAdd').innerHTML = '';
+        addTaskForm.descreption.value = '';
+        addTaskForm.taskCompletedCbForAdd.checked = false;
         getTasks();
     }
 });
