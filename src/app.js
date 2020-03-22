@@ -25,7 +25,12 @@ app.get(/^\/(login)?$/, (req, res) => {
     res.render('login');
 });
 app.get('/dashboard', auth, (req, res) => res.render('dashboard', req.user));
-app.get('/signup', (req, res) => res.render('signup'));
+app.get('/signup', (req, res) => {
+    if (req.cookies.token) {
+        return res.redirect('/dashboard');
+    }
+    res.render('signup')
+});
 app.get('*', (req, res) => res.sendStatus(404));
 
 const PORT = process.env.PORT;
