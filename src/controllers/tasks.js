@@ -6,7 +6,7 @@ exports.addTask = async (req, res) => {
         await new Task({ ...req.body, owner: req.user._id }).save();
         res.json({ success: true });
     } catch (e) {
-        res.json({ success: false, error: helpers.filterErrors(e.errors) });
+        res.json({ success: false, error: helpers.filterErrors(e.errors)[0] });
     }
 };
 
@@ -26,11 +26,10 @@ exports.deleteTasks = async (req, res) => {
 
 exports.updateTask = async (req, res) => {
     try {
-        await Task.findOneAndUpdate({ _id: req.params.id }, { ...req.body });
+        await Task.findOneAndUpdate({ _id: req.params.id }, { ...req.body }, { runValidators: true });
         res.json({ success: true });
     } catch (e) {
-        console.log(e);
-        res.json({ success: false, error: 'Internal Server Error' });
+        res.json({ success: false, error: helpers.filterErrors(e.errors)[0] });
     }
 };
 

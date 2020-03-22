@@ -45,24 +45,28 @@ deleteAllForm.addEventListener('submit', async e => {
     getTasks();
 });
 
-addTaskForm.addEventListener('submit', e => {
+addTaskForm.addEventListener('submit', async e => {
     e.preventDefault();
-    modifyTask(addTaskForm, '/tasks', taskCompletedCbForAdd, document.getElementById('alertsAreaForAdd'), 'POST');
-});
-
-editTaskForm.addEventListener('submit', e => {
-    e.preventDefault();
-    modifyTask(addTaskForm, `/tasks/${editTaskForm.userID.value}`, taskCompletedCbForEdit, document.getElementById('alertsAreaForEdit'), 'PATCH');
-});
-
-async function modifyTask(form, url, completedInp, alertBox, method) {
-    const descreption = form.descreption.value;
-    const completed = completedInp.checked;
-    const response = await sendRequest(url, method, { descreption, completed });
+    const descreption = addTaskForm.descreption.value;
+    const completed = taskCompletedCbForAdd.checked;
+    const response = await sendRequest('/tasks', 'POST', { descreption, completed });
     if (!response.success) {
-        alertBox.innerHTML = `<div class="alert alert-warning">${response.error}</div>`;
+        document.getElementById('alertsAreaForAdd').innerHTML = `<div class="alert alert-warning">${response.error}</div>`;
     } else {
-        alertBox.innerHTML = '';
+        document.getElementById('alertsAreaForAdd').innerHTML = '';
         getTasks();
     }
-}
+});
+
+editTaskForm.addEventListener('submit', async e => {
+    e.preventDefault();
+    const descreption = editTaskForm.descreption.value;
+    const completed = taskCompletedCbForEdit.checked;
+    const response = await sendRequest(`/tasks/${editTaskForm.userID.value}`, 'PATCH', { descreption, completed });
+    if (!response.success) {
+        document.getElementById('alertsAreaForEdit').innerHTML = `<div class="alert alert-warning">${response.error}</div>`;
+    } else {
+        document.getElementById('alertsAreaForEdit').innerHTML = '';
+        getTasks();
+    }
+});

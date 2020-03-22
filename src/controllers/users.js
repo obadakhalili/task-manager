@@ -13,8 +13,7 @@ exports.signup = async (req, res) => {
                 user: helpers.filterObj(user._doc, ['_id', 'password', 'tokens', '__v'])
             }
         });
-    } catch (e) {
-        console.log(e);
+    } catch {
         if (e.code === 11000) {
             res.json({ success: false, error: ['Email already exists'] });
         } else {
